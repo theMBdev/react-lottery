@@ -8,6 +8,31 @@
   background-color: rgb(255, 224, 87);
 }
 
+li {
+  text-decoration: none;
+  list-style-type: none;
+}
+
+.numbersContainer {
+  display: flex;
+  flex-direction: row;
+  width: 300px;  
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.numberBall {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: cornflowerblue;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: white;
+}
+
 /* .show {
   display: block;
 }
