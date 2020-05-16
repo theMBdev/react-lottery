@@ -14,7 +14,7 @@ function SelectNumbers({}) {
       
       // find position and remove
       const newUserNumbers = [...userNumbers];  
-      var index = newUserNumbers.indexOf(e.target.innerHTML)
+      var index = newUserNumbers.indexOf(parseInt(e.target.innerHTML))
       console.log("index", index);
       if (index !== -1) {
         newUserNumbers.splice(index, 1);
@@ -28,7 +28,7 @@ function SelectNumbers({}) {
         console.log("max numbers selected")
       } else { 
         e.target.classList.add("buttonNumber--clicked");
-        const newUserNumbers = [...userNumbers, e.target.innerHTML ];
+        const newUserNumbers = [...userNumbers, parseInt(e.target.innerHTML) ];
         setUserNumbers(newUserNumbers);
       }      
     }
@@ -39,6 +39,31 @@ function SelectNumbers({}) {
 
   const playClicked = () => {
     console.log("clicked");
+
+    //generate 6 random numbers
+    const lotteryNumbers = []
+
+        while (lotteryNumbers.length < 6) {
+          var randomNumber = Math.floor(Math.random() * 10) + 1;
+
+          if (lotteryNumbers.includes(randomNumber)) {
+            console.log('DUP')            
+          } else {
+            console.log('ADD')
+            lotteryNumbers.push(randomNumber);            
+          }          
+        }     
+      console.log(lotteryNumbers)
+      console.log(userNumbers)
+
+      //compare lotteryNumbers and userNumbers
+      const intersection = userNumbers.filter(element => lotteryNumbers.includes(element));
+        console.log("output", intersection);
+
+
+    //switch to output if 1 match, 2 match, 3...   use intersection.length
+
+
   }
   
 
