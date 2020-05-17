@@ -1,14 +1,22 @@
 import React, { useState } from 'react';
 import './App.css';
 
-
+function useAsyncState(initialValue) {
+  const [value, setValue] = useState(initialValue);
+  const setter = x =>
+    new Promise(resolve => {
+      setValue(x);
+      resolve(x);
+    });
+  return [value, setter];
+}
 
 
 function SelectNumbers({ }) {
-  const [userNumbers, setUserNumbers] = useState([]);
-  const [winningMessage, setWinningMessage] = useState('');
-  const [lotteryNumbers, setLotteryNumbers] = useState([]);
-  const [lotteryNumbersDisplay, setLotteryNumbersDisplay] = useState([]);
+  const [userNumbers, setUserNumbers] = useAsyncState([]);
+  const [winningMessage, setWinningMessage] = useAsyncState('');
+  const [lotteryNumbers, setLotteryNumbers] = useAsyncState([]);
+  const [lotteryNumbersDisplay, setLotteryNumbersDisplay] = useAsyncState([]);
 
   const clickFunc = e => {
     if (e.target.classList.contains('buttonNumber--clicked')) {
@@ -39,9 +47,6 @@ function SelectNumbers({ }) {
     setLotteryNumbers([]);
     setLotteryNumbersDisplay([]);
     setWinningMessage('');
-    // console.log(userNumbers);
-    // console.log(e.target.innerHTML);  
-    // console.log("classlist", e.target.classList);
   }
 
   const playClicked = () => {
@@ -49,9 +54,9 @@ function SelectNumbers({ }) {
 
       console.log("lotteryNumbers", lotteryNumbers);
 
-      for (var i = 0; i < 4; i++) {    
-
-      //generate 6 random numbers
+      function gen6numbers() {
+        
+                //generate 6 random numbers
       while (lotteryNumbers.length < 6) {
         var randomNumber = Math.floor(Math.random() * 10) + 1;
 
@@ -67,7 +72,6 @@ function SelectNumbers({ }) {
       //compare lotteryNumbers and userNumbers
       const intersection = userNumbers.filter(element => lotteryNumbers.includes(element));
       console.log("output", intersection);
-
 
       //switch to output if 1 match, 2 match, 3...   use intersection.length
       switch (intersection.length) {
@@ -108,12 +112,28 @@ function SelectNumbers({ }) {
       // this is because setting the lotterNumbers array to empty takes it away from displaying
       // on screen to the user
       setLotteryNumbersDisplay(lotteryNumbers.sort(sorter));
-      setLotteryNumbers([]);
+      }      
 
-    }
+      for (var i = 0; i < 4; i++) {  
+        // doesnt work
+        // is ment to generate a new set of numbers each loop but 
+        // is not setting numbers array to empty
+        setLotteryNumbers([]).then(gen6numbers());
 
+        console.log("loop", i + " " + lotteryNumbers)
+      }
+    
   }
 
+  // try this sync answer is here
+  // https://sung.codes/blog/2018/12/07/setting-react-hooks-states-in-a-sync-like-manner/
+  // https://codesandbox.io/s/useasyncstate-thenable-cgc9p?file=/src/index.js
+
+// i think using the above method we could set setLotteryNumbers to empty .then run the generator. 
+// loop that peice of code as many times as needed
+
+  // bit more complex 
+  // https://codesandbox.io/s/8by2s?file=/src/index.js
 
   return (
     <>
@@ -131,30 +151,23 @@ function SelectNumbers({ }) {
 
       <div className="numbersContainer">
         {userNumbers.map((number, index) =>
-          <li class="numberBall" key={index}>{number}</li>
+          <li className="numberBall" key={index}>{number}</li>
         )}
       </div>
 
       <button disabled={userNumbers.length < 4} onClick={playClicked} id="playButton" className="playButton" >Play</button>
 
-      <div class="numbersContainer">{lotteryNumbersDisplay.map((number, index) =>
-          <li class="numberBall" key={index}>{number}</li>
+      <div className="numbersContainer">{lotteryNumbersDisplay.map((number, index) =>
+          <li className="numberBall" key={index}>{number}</li>
         )}</div>
-      <div class="message">{winningMessage}</div>
+      <div className="message">{winningMessage}</div>
 
     </>
   )
 }
 
 
-
-
-
-
 function App() {
-
-
-
   return (
     <div className="App">
       <SelectNumbers />
