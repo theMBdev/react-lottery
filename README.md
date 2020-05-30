@@ -4,7 +4,8 @@ This is a small project using react. You pick 6 numbers and click play and the p
 ### Why
 To practice using react.
 
-
+### Main Technologies used
+Javascript, React
 
 #### Available Scripts
 
