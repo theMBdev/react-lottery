@@ -1,7 +1,14 @@
+.App {
+  width: 400px;
+  margin: auto;
+}
+
 .buttonNumber {
   height: 30px;
   width: 30px;
   background-color: rgb(255, 255, 204);
+  border: 1px solid gray;
+  margin-right: 3px;
 }
 
 .buttonNumber--clicked {
@@ -26,6 +33,18 @@ li {
   justify-content: center;
   align-items: center;
   background-color: cornflowerblue;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  color: white;
+}
+
+.numberBall--match {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(237, 100, 100);
   width: 40px;
   height: 40px;
   border-radius: 50%;

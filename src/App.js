@@ -1,39 +1,30 @@
 import React, { useState } from 'react';
 import './App.css';
 
-function useAsyncState(initialValue) {
-  const [value, setValue] = useState(initialValue);
-  const setter = x =>
-    new Promise(resolve => {
-      setValue(x);
-      resolve(x);
-    });
-  return [value, setter];
-}
-
 
 function SelectNumbers({ }) {
-  const [userNumbers, setUserNumbers] = useAsyncState([]);
-  const [winningMessage, setWinningMessage] = useAsyncState('');
-  const [lotteryNumbers, setLotteryNumbers] = useAsyncState([]);
-  const [lotteryNumbersDisplay, setLotteryNumbersDisplay] = useAsyncState([]);
+  const [userNumbers, setUserNumbers] = useState([]);
+  const [winningMessage, setWinningMessage] = useState('');
+  const [lotteryNumbers, setLotteryNumbers] = useState([]);
+  const [lotteryNumbersDisplay, setLotteryNumbersDisplay] = useState([]);
+  const [lotteryNumbersMatch, setlotteryNumbersMatch] = useState([]);
 
   const clickFunc = e => {
     if (e.target.classList.contains('buttonNumber--clicked')) {
-      console.log("found")
+      // console.log("found")
       e.target.classList.remove("buttonNumber--clicked");
 
       // find position and remove
       const newUserNumbers = [...userNumbers];
       var index = newUserNumbers.indexOf(parseInt(e.target.innerHTML))
-      console.log("index", index);
+      // console.log("index", index);
       if (index !== -1) {
         newUserNumbers.splice(index, 1);
         setUserNumbers(newUserNumbers);
       }
 
     } else {
-      console.log("Not found")
+      // console.log("Not found")
 
       if (userNumbers.length >= 4) {
         console.log("max numbers selected")
@@ -57,8 +48,8 @@ function SelectNumbers({ }) {
       function gen6numbers() {
         
                 //generate 6 random numbers
-      while (lotteryNumbers.length < 6) {
-        var randomNumber = Math.floor(Math.random() * 10) + 1;
+      while (lotteryNumbers.length < 4) {
+        var randomNumber = Math.floor(Math.random() * 9) + 1;
 
         if (lotteryNumbers.includes(randomNumber)) {
 
@@ -70,8 +61,11 @@ function SelectNumbers({ }) {
       console.log(userNumbers.sort(sorter))
 
       //compare lotteryNumbers and userNumbers
-      const intersection = userNumbers.filter(element => lotteryNumbers.includes(element));
+      const intersection = userNumbers.filter(element => 
+        lotteryNumbers.includes(element));
+       
       console.log("output", intersection);
+      setlotteryNumbersMatch(intersection);
 
       //switch to output if 1 match, 2 match, 3...   use intersection.length
       switch (intersection.length) {
@@ -91,17 +85,9 @@ function SelectNumbers({ }) {
           console.log("4 Numbers Matched");
           setWinningMessage("4 Numbers Matched");
           break;
-        case 5:
-          console.log("5 Numbers Matched");
-          setWinningMessage("5 Numbers Matched");
-          break;
-        case 6:
-          console.log("6 Numbers Matched");
-          setWinningMessage("6 Numbers Matched");
-          break;
         default:
           console.log("0 Numbers Matched");
-          setWinningMessage(" Numbers Matched");
+          setWinningMessage("0 Numbers Matched");
       }
 
       // fixed 10 being lower than 2,3,4...
@@ -112,31 +98,20 @@ function SelectNumbers({ }) {
       // this is because setting the lotterNumbers array to empty takes it away from displaying
       // on screen to the user
       setLotteryNumbersDisplay(lotteryNumbers.sort(sorter));
-      }      
+      } 
 
-      for (var i = 0; i < 4; i++) {  
-        // doesnt work
-        // is ment to generate a new set of numbers each loop but 
-        // is not setting numbers array to empty
-        setLotteryNumbers([]).then(gen6numbers());
-
-        console.log("loop", i + " " + lotteryNumbers)
-      }
+      setLotteryNumbers([]);
+      gen6numbers();
     
   }
 
-  // try this sync answer is here
-  // https://sung.codes/blog/2018/12/07/setting-react-hooks-states-in-a-sync-like-manner/
-  // https://codesandbox.io/s/useasyncstate-thenable-cgc9p?file=/src/index.js
-
-// i think using the above method we could set setLotteryNumbers to empty .then run the generator. 
-// loop that peice of code as many times as needed
-
-  // bit more complex 
-  // https://codesandbox.io/s/8by2s?file=/src/index.js
-
   return (
     <>
+    
+    <h3>Mini Lottery</h3>
+    <p className="text">Select 4 numbers</p>
+    <p className="text">When you press play the computer will randomly select 4 numbers from 1 to 9.</p>
+
       <div className="numbers">
         <button className="buttonNumber" onClick={e => clickFunc(e)} >1</button>
         <button className="buttonNumber" onClick={e => clickFunc(e)} >2</button>
@@ -151,15 +126,28 @@ function SelectNumbers({ }) {
 
       <div className="numbersContainer">
         {userNumbers.map((number, index) =>
+
           <li className="numberBall" key={index}>{number}</li>
+
         )}
       </div>
 
       <button disabled={userNumbers.length < 4} onClick={playClicked} id="playButton" className="playButton" >Play</button>
 
-      <div className="numbersContainer">{lotteryNumbersDisplay.map((number, index) =>
-          <li className="numberBall" key={index}>{number}</li>
-        )}</div>
+      {/* if(lotteryNumbersMatch.includes(number)) {
+        console.log("testing number found");
+      }  */}
+
+      <div className="numbersContainer">
+      {lotteryNumbersDisplay.map((number, index) => 
+        
+        <li className={lotteryNumbersMatch.includes(number) ? 'numberBall--match' : "numberBall"} key={index}>{number}</li>   
+
+        )
+        
+      }        
+      </div>
+
       <div className="message">{winningMessage}</div>
 
     </>
