@@ -1,5 +1,5 @@
 ### What is this
-This is a small project using react. You pick 4 numbers and click play and the program will generate 4 random numbers and compare them with your numbers letting you know how many matched.
+This is a small project using react. You pick 4 numbers (1-9) and click play and the program will generate 4 random numbers (1-9) and compare them with your numbers letting you know how many matched.
 
 ### Why
 To practice using react hooks.
