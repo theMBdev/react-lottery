@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
 
-
 function SelectNumbers({ }) {
   const [userNumbers, setUserNumbers] = useState([]);
   const [winningMessage, setWinningMessage] = useState('');

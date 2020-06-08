@@ -1,13 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
 .App {
   width: 400px;
   margin: auto;
+  font-family: 'Lato', sans-serif;
 }
 
 .buttonNumber {
   height: 30px;
   width: 30px;
   background-color: rgb(255, 255, 204);
-  border: 1px solid gray;
+  border: 1px solid rgb(255, 236, 128);
   margin-right: 3px;
 }
 
@@ -55,7 +58,9 @@ li {
 /* .show {
   display: block;
 }
+*/
 
 .playButton {
-  display: none;
-} */
+  width: 60px;
+  height: 40px;
+} 
