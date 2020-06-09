@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "/theMBdev/react-lottery/static/css/main.a74b4391.chunk.css",
-    "main.js": "/theMBdev/react-lottery/static/js/main.25c4df3b.chunk.js",
-    "main.js.map": "/theMBdev/react-lottery/static/js/main.25c4df3b.chunk.js.map",
-    "runtime-main.js": "/theMBdev/react-lottery/static/js/runtime-main.780031f6.js",
-    "runtime-main.js.map": "/theMBdev/react-lottery/static/js/runtime-main.780031f6.js.map",
-    "static/js/2.7c7335f9.chunk.js": "/theMBdev/react-lottery/static/js/2.7c7335f9.chunk.js",
-    "static/js/2.7c7335f9.chunk.js.map": "/theMBdev/react-lottery/static/js/2.7c7335f9.chunk.js.map",
-    "index.html": "/theMBdev/react-lottery/index.html",
-    "precache-manifest.7b57479ca871e2cd38435ccccdc95686.js": "/theMBdev/react-lottery/precache-manifest.7b57479ca871e2cd38435ccccdc95686.js",
-    "service-worker.js": "/theMBdev/react-lottery/service-worker.js",
-    "static/css/main.a74b4391.chunk.css.map": "/theMBdev/react-lottery/static/css/main.a74b4391.chunk.css.map",
-    "static/js/2.7c7335f9.chunk.js.LICENSE.txt": "/theMBdev/react-lottery/static/js/2.7c7335f9.chunk.js.LICENSE.txt"
+    "main.css": "/react-lottery/static/css/main.a74b4391.chunk.css",
+    "main.js": "/react-lottery/static/js/main.25c4df3b.chunk.js",
+    "main.js.map": "/react-lottery/static/js/main.25c4df3b.chunk.js.map",
+    "runtime-main.js": "/react-lottery/static/js/runtime-main.f92557b1.js",
+    "runtime-main.js.map": "/react-lottery/static/js/runtime-main.f92557b1.js.map",
+    "static/js/2.7c7335f9.chunk.js": "/react-lottery/static/js/2.7c7335f9.chunk.js",
+    "static/js/2.7c7335f9.chunk.js.map": "/react-lottery/static/js/2.7c7335f9.chunk.js.map",
+    "index.html": "/react-lottery/index.html",
+    "precache-manifest.013488a2094ad4984d448ba549e77096.js": "/react-lottery/precache-manifest.013488a2094ad4984d448ba549e77096.js",
+    "service-worker.js": "/react-lottery/service-worker.js",
+    "static/css/main.a74b4391.chunk.css.map": "/react-lottery/static/css/main.a74b4391.chunk.css.map",
+    "static/js/2.7c7335f9.chunk.js.LICENSE.txt": "/react-lottery/static/js/2.7c7335f9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.780031f6.js",
+    "static/js/runtime-main.f92557b1.js",
     "static/js/2.7c7335f9.chunk.js",
     "static/css/main.a74b4391.chunk.css",
     "static/js/main.25c4df3b.chunk.js"
