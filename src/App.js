@@ -8,6 +8,7 @@ function SelectNumbers({ }) {
   const [lotteryNumbersDisplay, setLotteryNumbersDisplay] = useState([]);
   const [lotteryNumbersMatch, setlotteryNumbersMatch] = useState([]);
 
+  // user selects numbers
   const clickFunc = e => {
     if (e.target.classList.contains('buttonNumber--clicked')) {
       // console.log("found")
@@ -40,13 +41,12 @@ function SelectNumbers({ }) {
   }
 
   const playClicked = () => {
-    console.log("clicked");
-
-      console.log("lotteryNumbers", lotteryNumbers);
+      // console.log("clicked");
+      // console.log("lotteryNumbers", lotteryNumbers);
 
       function gen6numbers() {
         
-                //generate 6 random numbers
+      //generate 4 random numbers
       while (lotteryNumbers.length < 4) {
         var randomNumber = Math.floor(Math.random() * 9) + 1;
 
@@ -56,8 +56,8 @@ function SelectNumbers({ }) {
           lotteryNumbers.push(randomNumber);
         }
       }
-      console.log(lotteryNumbers.sort(sorter))
-      console.log(userNumbers.sort(sorter))
+      // console.log(lotteryNumbers.sort(sorter))
+      // console.log(userNumbers.sort(sorter))
 
       //compare lotteryNumbers and userNumbers
       const intersection = userNumbers.filter(element => 
@@ -94,7 +94,7 @@ function SelectNumbers({ }) {
         return a - b;
       }      
 
-      // this is because setting the lotterNumbers array to empty takes it away from displaying
+      // this is used because setting the lotterNumbers array to empty takes it away from displaying
       // on screen to the user
       setLotteryNumbersDisplay(lotteryNumbers.sort(sorter));
       } 
@@ -125,25 +125,16 @@ function SelectNumbers({ }) {
 
       <div className="numbersContainer">
         {userNumbers.map((number, index) =>
-
           <li className="numberBall" key={index}>{number}</li>
-
         )}
       </div>
 
       <button disabled={userNumbers.length < 4} onClick={playClicked} id="playButton" className="playButton" >Play</button>
 
-      {/* if(lotteryNumbersMatch.includes(number)) {
-        console.log("testing number found");
-      }  */}
-
       <div className="numbersContainer">
-      {lotteryNumbersDisplay.map((number, index) => 
-        
+      {lotteryNumbersDisplay.map((number, index) =>         
         <li className={lotteryNumbersMatch.includes(number) ? 'numberBall--match' : "numberBall"} key={index}>{number}</li>   
-
-        )
-        
+        )        
       }        
       </div>
 
